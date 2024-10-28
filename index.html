@@ -81,7 +81,7 @@
                     </li>
                 </ul>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                    class="btn btn-brand ms-lg-3">Contact</a>
+                    class="btn btn-brand ms-lg-3">Appointment</a>
             </div>
         </div>
     </nav>
@@ -363,47 +363,75 @@
                             <div class="col-lg-4 col-sm-12 bg-cover"
                                 style="background-image: url(img/sir-images/16.jpeg); min-height:300px;">
                                 <div>
-
+                                    <!-- Image container -->
                                 </div>
                             </div>
                             <div class="col-lg-8">
-                                <form class="p-lg-5 col-12 row g-3">
+                                <form class="p-lg-5 col-12 row g-3" action="https://formspree.io/f/xqakekaw"
+                                    method="POST">
                                     <div>
                                         <h1>Book Your Appointment</h1>
-                                        <p>We value your time and are here to assist you. To schedule your appointment
-                                            with us, please take a moment to fill out the form</p>
+                                        <!-- <p>We value your time and are here to assist you. Please fill out the form below to schedule your appointment with us.</p> -->
+                                    </div>
+
+                                    <!-- Appointment Date -->
+                                    <div class="col-lg-6">
+                                        <label for="appointmentDate" class="form-label">Appointment Date</label>
+                                        <input type="date" class="form-control" name="appointmentDate" required="">
+                                    </div>
+
+                                    <!-- Appointment Time -->
+                                    <div class="col-lg-6">
+                                        <label for="appointmentTime" class="form-label">Appointment Time</label>
+                                        <input type="time" class="form-control" name="appointmentTime" required="">
+                                    </div>
+
+                                    <!-- Name Fields -->
+                                    <div class="col-lg-6">
+                                        <label for="userName" class="form-label">First Name</label>
+                                        <input type="text" class="form-control" placeholder="Abhishek" required=""
+                                            name="first" aria-describedby="emailHelp">
                                     </div>
                                     <div class="col-lg-6">
-                                        <label for="userName" class="form-label">First name</label>
-                                        <input type="text" class="form-control" placeholder="Abhsihek" required=""
-                                            id="userName" aria-describedby="emailHelp">
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <label for="userName" class="form-label">Last name</label>
+                                        <label for="userName" class="form-label">Last Name</label>
                                         <input type="text" class="form-control" placeholder="Singh" required=""
-                                            id="userName" aria-describedby="emailHelp">
+                                            name="last" aria-describedby="emailHelp">
                                     </div>
+
+                                    <!-- Email Address -->
                                     <div class="col-12">
-                                        <label for="userName" class="form-label">Email address</label>
+                                        <label for="userEmail" class="form-label">Email Address</label>
                                         <input type="email" class="form-control" required=""
-                                            placeholder="abhisheksingh12@example.com" id="userName"
+                                            placeholder="abhisheksingh12@example.com" name="email"
                                             aria-describedby="emailHelp">
                                     </div>
+
+                                    <!-- Phone Number -->
                                     <div class="col-12">
-                                        <label for="exampleInputEmail1" class="form-label">Enter Message</label>
-                                        <textarea name="" placeholder="This is looking great and nice."
+                                        <label for="userPhone" class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" required placeholder="9876543210"
+                                            name="phone" pattern="\d{10}"
+                                            title="Please enter a valid 10-digit phone number."
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                                    </div>
+
+                                    <!-- Message -->
+                                    <div class="col-12">
+                                        <label for="userMessage" class="form-label">Message</label>
+                                        <textarea name="message"
+                                            placeholder="Add any details regarding the appointment..."
                                             class="form-control" required="" id="" rows="4"></textarea>
                                     </div>
 
+                                    <!-- Submit Button -->
                                     <div class="col-12">
-                                        <button type="submit" class="btn btn-brand">Send Message</button>
+                                        <button type="submit" class="btn btn-brand">Book Appointment</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
