@@ -51,10 +51,9 @@ $(document).ready(function () {
   });
 });
 
-
 // Custom Javascript for Date Selection Logic
 
-const busyDates = ["2024-11-10", "2024-11-15", "2024-11-20"]; // Dummy array jisme busy dates hain (Format: YYYY-MM-DD) 
+const busyDates = ["2024-11-10", "2024-11-15", "2024-11-20"]; // Dummy array jisme busy dates hain (Format: YYYY-MM-DD)
 
 function checkDateAvailability() {
   const appointmentDate = document.getElementById("appointmentDate").value;
