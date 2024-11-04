@@ -367,10 +367,9 @@
                                 </div>
                             </div>
                             <div class="col-lg-8">
-                                <form class="p-lg-5 col-12 row g-3">
+                                <form class="p-lg-5 col-12 row g-3" onsubmit="return checkAvailability()">
                                     <div>
                                         <h1>Book Your Appointment</h1>
-                                        <!-- <p>We value your time and are here to assist you. Please fill out the form below to schedule your appointment with us.</p> -->
                                     </div>
 
                                     <div class="col-lg-6">
@@ -386,13 +385,13 @@
                                     </div>
 
                                     <div class="col-lg-6">
-                                        <label for="AppointmentData" class="form-label">Appointment Date *</label>
-                                        <input type="date" class="form-control" required name="AppointmentData">
+                                        <label for="appointmentDate" class="form-label">Appointment Date *</label>
+                                        <input type="date" class="form-control" required name="appointmentDate" id="appointmentDate" onchange="checkDateAvailability()">
                                     </div>
                                     
                                     <div class="col-lg-6">
                                         <label for="time" class="form-label">Available Time Slots (24hr) *</label>
-                                        <input type="text" class="form-control custom-placeholder" name="time"
+                                        <input type="text" class="form-control custom-placeholder" name="time" id="timeSlotMessage"
                                             placeholder="No available slots for the selected date." readonly
                                             style="background-color: #c45f66;">
                                     </div>
@@ -423,7 +422,6 @@
             </div>
         </div>
     </div>
-
 
 
     <script src="js/jquery.min.js"></script>
