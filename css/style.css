@@ -515,3 +515,7 @@ input.form-control {
     box-shadow: none;
     border-color: var(--brand);
 }
+
+.custom-placeholder::placeholder {
+    color: white;
+}
