@@ -16,6 +16,10 @@
 
     <title>Dr. Saurabh Singhal</title>
 
+    <!-- SweetAlert2 CSS and JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SFDEPMCEJG"></script>
     <script>
@@ -360,14 +364,14 @@
                 <div class="modal-body p-0">
                     <div class="container-fluid">
                         <div class="row gy-4">
-                            <div class="col-lg-4 col-sm-12 bg-cover"
-                                style="background-image: url(img/sir-images/16.jpeg); min-height:300px;">
+                            <div class="col-lg-4 col-sm-12 bg-cover" style="background-image: url(img/sir-images/16.jpeg); min-height:300px;">
                                 <div>
                                     <!-- Image container -->
                                 </div>
                             </div>
                             <div class="col-lg-8">
-                                <form class="p-lg-5 col-12 row g-3" onsubmit="return checkAvailability()">
+                                <!-- Form submission updated to call submitForm() function -->
+                                <form class="p-lg-5 col-12 row g-3" onsubmit="return submitForm(event)">
                                     <div>
                                         <h1>Book Your Appointment</h1>
                                     </div>
@@ -388,7 +392,7 @@
                                         <label for="appointmentDate" class="form-label">Appointment Date *</label>
                                         <input type="date" class="form-control" required name="appointmentDate" id="appointmentDate" onchange="checkDateAvailability()">
                                     </div>
-                                    
+
                                     <div class="col-lg-6">
                                         <label for="time" class="form-label">Available Time Slots (24hr) *</label>
                                         <input type="text" class="form-control custom-placeholder" name="time" id="timeSlotMessage"
@@ -422,6 +426,61 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // JavaScript function to handle form submission and send data to the backend with SweetAlert2 alerts
+        async function submitForm(event) {
+            event.preventDefault();
+
+            const formData = {
+                name: document.querySelector('input[name="name"]').value,
+                email: document.querySelector('input[name="email"]').value,
+                appointmentDate: document.querySelector('input[name="appointmentDate"]').value,
+                time: document.querySelector('input[name="time"]').value,
+                phone: document.querySelector('input[name="phone"]').value,
+                message: document.querySelector('textarea[name="message"]').value,
+            };
+
+            try {
+                const response = await fetch("/send-appointment", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Appointment Booked!',
+                        text: result.message,
+                        confirmButtonText: 'OK',
+                        timer: 3000 
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Failed to Book Appointment',
+                        text: result.message || 'There was an error with your request.',
+                        confirmButtonText: 'Try Again'
+                    });
+                }
+            } catch (error) {
+                console.error("Error submitting form:", error);
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Network Error',
+                    text: 'Unable to connect to the server. Please try again later.',
+                    confirmButtonText: 'OK'
+                });
+            }
+        }
+    </script>
+
 
 
     <script src="js/jquery.min.js"></script>

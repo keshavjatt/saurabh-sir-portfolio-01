@@ -51,23 +51,25 @@ $(document).ready(function () {
   });
 });
 
+
+
 // Custom Javascript for Date Selection Logic
 
-const busyDates = ["2024-11-10", "2024-11-15", "2024-11-20"]; // Dummy array jisme busy dates hain (Format: YYYY-MM-DD)
+const availableDates = ["2024-11-10", "2024-11-15", "2024-11-20"]; 
 
 function checkDateAvailability() {
   const appointmentDate = document.getElementById("appointmentDate").value;
   const timeSlotMessage = document.getElementById("timeSlotMessage");
 
-  // Check if selected date is busy
-  if (busyDates.includes(appointmentDate)) {
+  // Check if selected date is available
+  if (availableDates.includes(appointmentDate)) {
+    timeSlotMessage.value = "Slots are available for the selected date.";
+    timeSlotMessage.classList.remove("no-slots");
+    timeSlotMessage.classList.add("available-slots");
+  } else {
     timeSlotMessage.value = "No available slots for the selected date.";
     timeSlotMessage.classList.remove("available-slots");
     timeSlotMessage.classList.add("no-slots");
-  } else {
-    timeSlotMessage.value = "Slots is available for the selected date.";
-    timeSlotMessage.classList.remove("no-slots");
-    timeSlotMessage.classList.add("available-slots");
   }
 }
 
@@ -81,4 +83,61 @@ function checkAvailability() {
     return false; // Form submit nahi hoga
   }
   return true; // Form submit hoga
+}
+
+
+
+// Appointment form submission script
+async function submitForm(event) {
+  event.preventDefault(); // Form ko reload hone se roke
+
+  const formData = {
+      name: document.querySelector('input[name="name"]').value,
+      email: document.querySelector('input[name="email"]').value,
+      appointmentDate: document.querySelector('input[name="appointmentDate"]').value,
+      time: document.querySelector('input[name="time"]').value,
+      phone: document.querySelector('input[name="phone"]').value,
+      message: document.querySelector('textarea[name="message"]').value,
+  };
+
+  try {
+      const response = await fetch("http://localhost:5007/send-appointment", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      // Show success alert if the email was sent successfully
+      if (response.ok) {
+          Swal.fire({
+              icon: 'success',
+              title: 'Appointment Booked!',
+              text: result.message,
+              confirmButtonText: 'OK',
+              timer: 3000 // Optional: Auto-close after 3 seconds
+          });
+      } else {
+          // Show error alert if something went wrong
+          Swal.fire({
+              icon: 'error',
+              title: 'Failed to Book Appointment',
+              text: result.message || 'There was an error with your request.',
+              confirmButtonText: 'Try Again'
+          });
+      }
+  } catch (error) {
+      console.error("Error submitting form:", error);
+
+      // Show error alert if fetch request fails
+      Swal.fire({
+          icon: 'error',
+          title: 'Network Error',
+          text: 'Unable to connect to the server. Please try again later.',
+          confirmButtonText: 'OK'
+      });
+  }
 }
