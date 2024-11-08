@@ -530,21 +530,3 @@ input.form-control {
   box-shadow: none;
   border-color: var(--brand);
 }
-
-/****      Custom CSS        ***/
-
-.custom-placeholder::placeholder {
-  color: white;
-}
-
-/* Red background for no available slots */
-.no-slots {
-  background-color: #c45f66 !important;
-  color: white;
-}
-
-/* Green background for available slots */
-.available-slots {
-  background-color: #28a745 !important;
-  color: white;
-}
