@@ -46,6 +46,9 @@
                                 class='bx bxs-phone-call'></i> +91 9990100043</a></p>
                 </div>
                 <div class="col-auto social-icons">
+                    <button style="margin-top: -110px; margin-right: 5px; border-radius: 10px;" onclick="window.location.href='/portal/login.html'">
+                        Login
+                    </button>
                     <a href="https://www.facebook.com/people/Saurabh-Singhal/61567603562797/" target="_blank"><i
                             class='bx bxl-facebook'></i></a>
                     <a href="https://x.com/SourabhSSinghal" target="_blank"><i class='bx bxl-twitter'></i></a>
@@ -366,12 +369,12 @@
                         <div class="row gy-4">
                             <div class="col-lg-4 col-sm-12 bg-cover" style="background-image: url(img/sir-images/16.jpeg); min-height:300px;">
                                 <div>
-                                    <!-- Image container -->
+                                    
                                 </div>
                             </div>
                             <div class="col-lg-8">
-                                <!-- Form submission updated to call submitForm() function -->
-                                <form class="p-lg-5 col-12 row g-3" onsubmit="return submitForm(event)">
+                                
+                                <form class="p-lg-5 col-12 row g-3" onsubmit="return submitForm(event)" method="post" action="https://formspree.io/f/xrbgqdgd">
                                     <div>
                                         <h1>Book Your Appointment</h1>
                                     </div>
@@ -444,25 +447,55 @@
     </style>
 
     <script>
-        const availableDates = ["2024-11-10", "2024-11-15", "2024-11-20"];
+        let isSlotsAvailable = true;  
 
         function checkDateAvailability() {
             const appointmentDate = document.getElementById("appointmentDate").value;
             const timeSlotMessage = document.getElementById("timeSlotMessage");
 
-            // Check if selected date is available
-            if (availableDates.includes(appointmentDate)) {
-                timeSlotMessage.value = "Slots are available for the selected date.";
-                timeSlotMessage.classList.remove("no-slots");
-                timeSlotMessage.classList.add("available-slots");
-            } else {
-                timeSlotMessage.value = "No available slots for the selected date.";
-                timeSlotMessage.classList.remove("available-slots");
-                timeSlotMessage.classList.add("no-slots");
+            fetch(`https://api.igcsm.online/api/appointment/check/${appointmentDate}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.available) {
+                        timeSlotMessage.value = data.message;
+                        timeSlotMessage.classList.remove("no-slots");
+                        timeSlotMessage.classList.add("available-slots");
+                        isSlotsAvailable = true; 
+                    } else {
+                        timeSlotMessage.value = data.message;
+                        timeSlotMessage.classList.remove("available-slots");
+                        timeSlotMessage.classList.add("no-slots");
+                        isSlotsAvailable = false; 
+
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'No Available Slots',
+                            text: 'No available slots for the selected date.',
+                            confirmButtonText: 'OK',
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error("Error checking availability:", error);
+                    timeSlotMessage.value = "Error checking availability.";
+                });
+        }
+
+        function submitForm(event) {
+            if (!isSlotsAvailable) {
+                event.preventDefault(); 
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'No Available Slots',
+                    text: 'No available slots for the selected date. Please choose another date.',
+                    confirmButtonText: 'OK',
+                });
+                return false; 
             }
+
+            return true;
         }
     </script>
-
 
 
     <script src="js/jquery.min.js"></script>
