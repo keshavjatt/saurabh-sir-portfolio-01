@@ -262,5 +262,23 @@
         }
     </script>
 
+
+
+
+
+
+
+    <script>
+        // Check if the user is logged in
+        window.onload = function() {
+            const username = sessionStorage.getItem("username");
+            if (!username) {
+                // If no username in sessionStorage, redirect to login page
+                window.location.href = "login.html";
+            }
+        }
+    </script>
+
+
 </body>
 </html>
