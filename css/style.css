@@ -93,7 +93,8 @@ section {
   background-color: var(--brand) !important;
 }
 
-/* General slide styles */
+/* Carousel CSS starts Here */
+
 .slide {
   min-height: 70vh;
   display: flex;
@@ -102,31 +103,26 @@ section {
   position: relative;
 }
 
-/* Mobile (max width: 768px) ke liye media query */
 @media (max-width: 768px) {
   .slide {
-    min-height: 50vh; /* Mobile devices ke liye height adjust kar di */
+    min-height: 50vh; 
   }
 }
 
-/* Additional for very small devices (max width: 480px) */
 @media (max-width: 480px) {
   .slide {
-    min-height: 40vh; /* Even smaller height for very small screens */
+    min-height: 40vh; 
   }
 }
 
-/* Slide 1 */
 .slide1 {
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
     url("../img/sir-images/carousel-01.jpeg");
-  /* background: url(../img/sir-images/new-02.jpeg); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-/* Slide 2 */
 .slide2 {
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
     url("../img/sir-images/carousel-02.jpeg");
@@ -135,11 +131,12 @@ section {
   background-repeat: no-repeat;
 }
 
-/* Text styles inside the slide */
 .slide .display-3 {
   text-transform: uppercase;
   color: #fff;
 }
+
+/* Carousel CSS Ends Here */
 
 /* navbar */
 .top-nav {
