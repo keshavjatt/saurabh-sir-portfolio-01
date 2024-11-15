@@ -119,7 +119,7 @@ section {
 /* Slide 1 */
 .slide1 {
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("../img/sir-images/new-02.jpeg");
+    url("../img/sir-images/carousel-01.jpeg");
   /* background: url(../img/sir-images/new-02.jpeg); */
   background-size: cover;
   background-position: center;
@@ -129,7 +129,7 @@ section {
 /* Slide 2 */
 .slide2 {
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("../img/sir-images/new-03.jpeg");
+    url("../img/sir-images/carousel-02.jpeg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
