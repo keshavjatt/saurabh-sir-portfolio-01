@@ -34,6 +34,7 @@
 
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="70">
 
+    <div class="fireworks-container"></div>
 
     <!-- TOP NAV -->
     <div class="top-nav" id="home">
@@ -46,7 +47,22 @@
                                 class='bx bxs-phone-call'></i> +91 9990100043</a></p>
                 </div>
                 <div class="col-auto social-icons">
-                    <button style="margin-top: -110px; margin-right: 5px; border-radius: 10px;" onclick="window.location.href='/portal/login.html'">
+                    <button 
+                        style="
+                            margin-top: -110px; 
+                            margin-right: 5px; 
+                            border-radius: 10px; 
+                            padding: 5px 10px; 
+                            font-size: 12px; 
+                            font-weight: bold; 
+                            color: white; 
+                            background: linear-gradient(90deg, #ff7e5f, #feb47b); 
+                            border: none; 
+                            cursor: pointer; 
+                            animation: blink 1s infinite, gradient-shift 3s infinite;
+                            transition: transform 0.2s;
+                        " 
+                        onclick="window.location.href='/portal/login.html'">
                         Login
                     </button>
                     <a href="https://www.facebook.com/people/Saurabh-Singhal/61567603562797/" target="_blank"><i
@@ -501,6 +517,38 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/app.js"></script>
+
+    <!-- Fireworks Javascript Animation starts Here -->
+    <script type="module">
+        import { Fireworks } from 'https://esm.run/fireworks-js';
+
+        const container = document.querySelector('.fireworks-container');
+
+        const options = {
+            gravity: 1.4,
+            opacity: 0.4,
+            autoresize: true,
+            acceleration: 1.0,
+            boundaries: {
+                x: 50,
+                y: 50,
+                width: window.innerWidth - 100,
+                height: window.innerHeight - 100,
+            },
+            particles: 100,
+            trace: 3,
+            flickering: 50,
+            intensity: 30,
+        };
+
+        const fireworks = new Fireworks(container, options);
+
+        fireworks.start();
+
+        setTimeout(() => fireworks.stop(), 10000); 
+    </script>
+    <!-- Fireworks Javascript Animation ends Here -->
+
 </body>
 
 </html>

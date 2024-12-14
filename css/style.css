@@ -527,3 +527,28 @@ input.form-control {
   box-shadow: none;
   border-color: var(--brand);
 }
+
+/* Custom Css  */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes gradient-shift {
+  0% { background: linear-gradient(90deg, #ff7e5f, #feb47b); }
+  50% { background: linear-gradient(90deg, #6a11cb, #2575fc); }
+  100% { background: linear-gradient(90deg, #ff7e5f, #feb47b); }
+}
+
+/* Fireworks Css Animation starts Here */
+.fireworks-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+/* Fireworks Css Animation ends Here */
