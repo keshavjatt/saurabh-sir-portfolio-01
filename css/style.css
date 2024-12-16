@@ -564,3 +564,32 @@ input.form-control {
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* Enhance shadow for a stronger 3D effect */
 }
 /* Tilt Css Animation ends Here */
+
+.flow-gradient-border {
+  position: relative;
+  display: inline-block;
+  padding: 8px; /* Space between gradient and image */
+  border-radius: 50%; /* Circular border */
+  background: linear-gradient(90deg, red, yellow, red);
+  background-size: 200% 200%; /* Larger background for smooth animation */
+  animation: flow-animation 4s linear infinite; /* Infinite animation */
+}
+
+.flow-gradient-border img {
+  display: block;
+  border-radius: 50%; /* Image circular */
+  width: 100%;
+  height: auto;
+}
+
+@keyframes flow-animation {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+}
