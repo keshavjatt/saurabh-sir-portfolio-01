@@ -552,3 +552,15 @@ input.form-control {
   overflow: hidden;
 }
 /* Fireworks Css Animation ends Here */
+
+/* Tilt Css Animation starts Here */
+.service {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform: perspective(1000px) rotateX(0) rotateY(0);
+}
+
+.service:hover {
+  transform: perspective(1000px) rotateX(15deg) rotateY(15deg); /* Increase rotation angles */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* Enhance shadow for a stronger 3D effect */
+}
+/* Tilt Css Animation ends Here */

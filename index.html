@@ -549,6 +549,28 @@
     </script>
     <!-- Fireworks Javascript Animation ends Here -->
 
+    <script>
+        document.querySelectorAll('.service').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left; // Cursor X position
+                const y = e.clientY - rect.top;  // Cursor Y position
+
+                // Increase multipliers to amplify rotation effect
+                const rotateX = ((y / rect.height) - 0.5) * 40; // Increased multiplier from 20 to 40
+                const rotateY = ((x / rect.width) - 0.5) * -40;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+            });
+        });
+
+    </script>
+    
+
 </body>
 
 </html>
