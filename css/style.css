@@ -594,3 +594,26 @@ input.form-control {
       background-position: 0% 50%;
   }
 }
+
+
+
+
+
+/* .first-image {
+  margin-top: 250px;
+}
+
+.second-image {
+  margin-top: 210px;
+}
+
+
+@media (max-width: 768px) {
+  .first-image {
+    margin-top: calc(250px - 40px);  
+  }
+
+  .second-image {
+    margin-top: calc(210px - 40px); 
+  }
+} */
